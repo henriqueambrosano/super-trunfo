@@ -16,6 +16,7 @@ class App extends React.Component {
     isSaveButtonDisabled: true,
     savedCards: [],
     nameFilter: '',
+    rarityFilter: 'todas',
   }
 
   validateForm = () => {
@@ -91,10 +92,23 @@ class App extends React.Component {
     this.setState({ nameFilter: value });
   }
 
+  setRarityFilter = ({ target }) => {
+    const { value } = target;
+    this.setState({ rarityFilter: value });
+  }
+
+  filterByRarity = () => {
+    const { rarityFilter, savedCards } = this.state;
+    if (rarityFilter === 'todas') {
+      return savedCards;
+    }
+    return savedCards.filter((card) => card.raridade === rarityFilter);
+  }
+
   render() {
     const {
       name, descricao, attr1, attr2, attr3, imagem, raridade, cardTrunfo,
-      isSaveButtonDisabled, hasTrunfo, savedCards, nameFilter,
+      isSaveButtonDisabled, hasTrunfo, nameFilter,
     } = this.state;
     return (
       <div>
@@ -133,21 +147,28 @@ class App extends React.Component {
             placeholder="Nome da carta"
             onChange={ this.filterByName }
           />
+          <select data-testid="rare-filter" onChange={ this.setRarityFilter }>
+            <option>todas</option>
+            <option>normal</option>
+            <option>raro</option>
+            <option>muito raro</option>
+          </select>
           <div className="cards-container">
-            {savedCards.filter((card) => card.name.includes(nameFilter)).map((card) => (
-              <Card
-                key={ card.name }
-                cardName={ card.name }
-                cardDescription={ card.descricao }
-                cardAttr1={ card.attr1 }
-                cardAttr2={ card.attr2 }
-                cardAttr3={ card.attr3 }
-                cardImage={ card.imagem }
-                cardRare={ card.raridade }
-                cardTrunfo={ card.cardTrunfo }
-                cardButton
-                deleteCard={ this.deleteCard }
-              />))}
+            {this.filterByRarity().filter((card) => card.name.includes(nameFilter))
+              .map((card) => (
+                <Card
+                  key={ card.name }
+                  cardName={ card.name }
+                  cardDescription={ card.descricao }
+                  cardAttr1={ card.attr1 }
+                  cardAttr2={ card.attr2 }
+                  cardAttr3={ card.attr3 }
+                  cardImage={ card.imagem }
+                  cardRare={ card.raridade }
+                  cardTrunfo={ card.cardTrunfo }
+                  cardButton
+                  deleteCard={ this.deleteCard }
+                />))}
           </div>
         </div>
       </div>
