@@ -15,6 +15,7 @@ class App extends React.Component {
     cardTrunfo: false,
     isSaveButtonDisabled: true,
     savedCards: [],
+    nameFilter: '',
   }
 
   validateForm = () => {
@@ -85,10 +86,15 @@ class App extends React.Component {
     this.setState(() => ({ [name]: value }), this.validateForm);
   }
 
+  filterByName = ({ target }) => {
+    const { value } = target;
+    this.setState({ nameFilter: value });
+  }
+
   render() {
     const {
       name, descricao, attr1, attr2, attr3, imagem, raridade, cardTrunfo,
-      isSaveButtonDisabled, hasTrunfo, savedCards,
+      isSaveButtonDisabled, hasTrunfo, savedCards, nameFilter,
     } = this.state;
     return (
       <div>
@@ -120,8 +126,15 @@ class App extends React.Component {
         />
         <div>
           <h2>Todas as cartas</h2>
+          <p>Filtros de busca</p>
+          <input
+            data-testid="name-filter"
+            type="text"
+            placeholder="Nome da carta"
+            onChange={ this.filterByName }
+          />
           <div className="cards-container">
-            {savedCards.map((card) => (
+            {savedCards.filter((card) => card.name.includes(nameFilter)).map((card) => (
               <Card
                 key={ card.name }
                 cardName={ card.name }
