@@ -89,21 +89,6 @@ class App extends React.Component {
     this.setState(() => ({ [name]: value }), this.validateForm);
   }
 
-  // filterByName = ({ target }) => {
-  //   const { value } = target;
-  //   this.setState({ nameFilter: value });
-  // }
-
-  // setRarityFilter = ({ target }) => {
-  //   const { value } = target;
-  //   this.setState({ rarityFilter: value });
-  // }
-
-  // setSuperTrunfoFilter = ({ target }) =>  {
-  //   const { checked } = target;
-  //   this.setState({ trunfoFilter: checked });
-  // }
-
   setFilter = ({ target }) => {
     const { name, type } = target;
     const value = type === 'checkbox' ? target.checked : target.value;
