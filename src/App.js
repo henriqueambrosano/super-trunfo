@@ -20,7 +20,6 @@ class App extends React.Component {
   validateForm = () => {
     const { name, descricao, imagem, raridade, attr1, attr2, attr3 } = this.state;
     let flag = 0;
-
     if (name && descricao && imagem && raridade)flag += 1;
     if (+attr1 + +attr2 + +attr3 <= +'210') flag += 1;
     if ([+attr1, +attr2, +attr3]
@@ -65,6 +64,20 @@ class App extends React.Component {
     });
   }
 
+  resetTrunfo = () => {
+    const { savedCards } = this.state;
+    if (!savedCards.find((item) => item.hasTrunfo)) {
+      this.setState({ hasTrunfo: false });
+    }
+  }
+
+  deleteCard = ({ target }) => {
+    const { id } = target;
+    this.setState((prev) => ({
+      savedCards: prev.savedCards.filter((item) => item.name !== id),
+    }), this.resetTrunfo);
+  }
+
   onInputChange =({ target }) => {
     const { name, type } = target;
     const value = type === 'checkbox' ? target.checked : target.value;
@@ -102,6 +115,8 @@ class App extends React.Component {
           cardImage={ imagem }
           cardRare={ raridade }
           cardTrunfo={ cardTrunfo }
+          cardButton={ false }
+          deleteCard={ this.deleteCard }
         />
         <div>
           <h2>Todas as cartas</h2>
@@ -117,6 +132,8 @@ class App extends React.Component {
                 cardImage={ card.imagem }
                 cardRare={ card.raridade }
                 cardTrunfo={ card.cardTrunfo }
+                cardButton
+                deleteCard={ this.deleteCard }
               />))}
           </div>
         </div>
