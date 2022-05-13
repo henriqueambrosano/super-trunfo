@@ -11,7 +11,8 @@ class App extends React.Component {
     attr3: '',
     imagem: '',
     raridade: 'normal',
-    superTrunfo: false,
+    hasTrunfo: false,
+    cardTrunfo: false,
     isSaveButtonDisabled: true,
     savedCards: [],
   }
@@ -29,8 +30,12 @@ class App extends React.Component {
 
   saveCard = () => {
     const {
-      name, descricao, imagem, raridade, attr1, attr2, attr3, superTrunfo,
+      name, descricao, imagem, raridade, attr1, attr2, attr3, cardTrunfo,
     } = this.state;
+
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: true });
+    }
 
     this.setState((prev) => ({
       savedCards: [...prev.savedCards, {
@@ -41,7 +46,7 @@ class App extends React.Component {
         attr1,
         attr2,
         attr3,
-        superTrunfo,
+        cardTrunfo,
       }],
     }), this.resetForm);
   }
@@ -55,7 +60,7 @@ class App extends React.Component {
       attr3: '0',
       imagem: '',
       raridade: 'normal',
-      superTrunfo: false,
+      cardTrunfo: false,
       isSaveButtonDisabled: true,
     });
   }
@@ -69,8 +74,8 @@ class App extends React.Component {
 
   render() {
     const {
-      name, descricao, attr1, attr2, attr3, imagem, raridade, superTrunfo,
-      isSaveButtonDisabled,
+      name, descricao, attr1, attr2, attr3, imagem, raridade, cardTrunfo,
+      isSaveButtonDisabled, hasTrunfo,
     } = this.state;
     return (
       <div>
@@ -82,7 +87,8 @@ class App extends React.Component {
           cardAttr3={ attr3 }
           cardImage={ imagem }
           cardRare={ raridade }
-          cardTrunfo={ superTrunfo }
+          cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.saveCard }
@@ -95,7 +101,7 @@ class App extends React.Component {
           cardAttr3={ attr3 }
           cardImage={ imagem }
           cardRare={ raridade }
-          cardTrunfo={ superTrunfo }
+          cardTrunfo={ cardTrunfo }
           onInputChange={ this.onInputChange }
         />
       </div>
