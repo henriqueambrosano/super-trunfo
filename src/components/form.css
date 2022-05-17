@@ -1,0 +1,55 @@
+input,
+select,
+textarea {
+  width: 100%;
+  height: 30px;
+  margin: 10px;
+}
+
+textarea {
+  height: 100px;
+}
+
+.left-label {
+  text-align: left;
+}
+
+.left-label input,
+.left-label textarea,
+.left-label select {
+  border: none;
+}
+
+.input-flex {
+  display: flex;
+  align-items: center;
+}
+
+.trunfo-input {
+  width: 15px;
+  height: 15px;
+}
+
+.btn {
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: 700;
+  padding: 10px 25px;
+  background-color: #003be5;
+  border: 2px solid #003be5;
+  border-radius: 4px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: none;
+  color: #111;
+  transform: scale(1.05);
+}
+
+.btn:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}

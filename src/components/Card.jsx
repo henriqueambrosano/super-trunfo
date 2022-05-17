@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import card from './card.css';
 
 class Card extends React.Component {
   render() {
@@ -16,27 +17,54 @@ class Card extends React.Component {
       deleteCard,
     } = this.props;
     return (
-      <div>
-        <p data-testid="name-card">{cardName}</p>
-        <img src={ cardImage } alt={ cardName } data-testid="image-card" />
-        <p data-testid="description-card">
-          { cardDescription }
-        </p>
-        <p data-testid="attr1-card">
-          {cardAttr1}
-        </p>
-        <p data-testid="attr2-card">
-          {cardAttr2}
-        </p>
-        <p data-testid="attr3-card">
-          {cardAttr3}
-        </p>
-        <p data-testid="rare-card">
-          {cardRare}
-        </p>
-        {cardTrunfo && <p data-testid="trunfo-card">Super Trunfo </p>}
+      <div className="card">
+        <div className="white-border" />
+        <div className="green-border" />
+        <div className="card-content">
+          <p
+            className="card-name"
+            data-testid="name-card"
+          >
+            {cardName || 'Pokemon name' }
+          </p>
+          <img
+            className="card-image"
+            src={ cardImage || 'https://www.ebrink.com.br/media/catalog/category/super-trunfo-logo.jpg' }
+            alt={ cardName }
+            data-testid="image-card"
+          />
+          <p
+            className="card-description"
+            data-testid="description-card"
+          >
+            { cardDescription || 'Descrição da carta' }
+          </p>
+          <div className="attr">
+            <span>Attr01...........................................................</span>
+            <p data-testid="attr1-card">
+              {cardAttr1}
+            </p>
+          </div>
+          <div className="attr">
+            <span>Attr02...........................................................</span>
+            <p data-testid="attr2-card">
+              {cardAttr2}
+            </p>
+          </div>
+          <div className="attr">
+            <span>Attr03...........................................................</span>
+            <p data-testid="attr3-card">
+              {cardAttr3}
+            </p>
+          </div>
+          <p data-testid="rare-card">
+            {`Raridade: ${cardRare}`}
+          </p>
+          {cardTrunfo && <p className="trunfo" data-testid="trunfo-card">Super Trunfo</p>}
+        </div>
         {cardButton && (
           <button
+            className="btn-delete"
             onClick={ deleteCard }
             id={ cardName }
             type="button"
