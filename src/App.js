@@ -25,10 +25,10 @@ class App extends React.Component {
   validateForm = () => {
     const { name, descricao, imagem, raridade, attr1, attr2, attr3 } = this.state;
     let flag = 0;
-    if (name && descricao && imagem && raridade)flag += 1;
-    if (+attr1 + +attr2 + +attr3 <= +'210') flag += 1;
+    if (name && descricao && imagem && raridade) flag += 1;
+    if (+attr1 && +attr2 && +attr3) flag += 1;
     if ([+attr1, +attr2, +attr3]
-      .filter((num) => num >= 0 && num < +'91').length === +'3') flag += 1;
+      .filter((num) => num >= 0 && num <= +'9999').length === +'3') flag += 1;
     this.setState({ isSaveButtonDisabled: flag !== +'3' });
   }
 

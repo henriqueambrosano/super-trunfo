@@ -35,12 +35,12 @@ class Form extends React.Component {
             </label>
           </div>
           <div className="left-label">
-            <label htmlFor="descicao">
+            <label htmlFor="descricao">
               Descrição:
               <textarea
                 value={ cardDescription }
                 onChange={ onInputChange }
-                id="descicao"
+                id="descricao"
                 name="descricao"
                 data-testid="description-input"
               />
@@ -80,7 +80,7 @@ class Form extends React.Component {
             />
           </div>
           <div className="input-flex">
-            <p> Imagem:</p>
+            <p>Imagem(URL):</p>
             <input
               value={ cardImage }
               onChange={ onInputChange }
