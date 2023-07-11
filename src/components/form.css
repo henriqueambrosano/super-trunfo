@@ -18,6 +18,10 @@ textarea {
 .left-label {
   text-align: left;
 }
+.attr-warn {
+  color: red;
+  font-weight: 400;
+}
 
 .left-label input,
 .left-label textarea,

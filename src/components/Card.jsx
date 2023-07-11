@@ -29,7 +29,7 @@ class Card extends React.Component {
           </p>
           <img
             className="card-image"
-            src={ cardImage || 'https://www.ebrink.com.br/media/catalog/category/super-trunfo-logo.jpg' }
+            src={ cardImage || 'https://camo.githubusercontent.com/ec684c89c93b8761907b910919ca4caf5605c792e380ed2c0fdac5ed65b664b0/68747470733a2f2f626c6f672e756d626c65722e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f30392f706f73742d31362d30382d31352d7472756e666f2d686f7374696e672d6c6f676f2e706e67' }
             alt={ cardName }
             data-testid="image-card"
           />

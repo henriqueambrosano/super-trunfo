@@ -79,6 +79,7 @@ class Form extends React.Component {
               data-testid="attr3-input"
             />
           </div>
+          <p className="attr-warn">O máximo de cada atributo deve ser 9999</p>
           <div className="input-flex">
             <p>Imagem(URL):</p>
             <input
